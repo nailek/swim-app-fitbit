@@ -1,0 +1,44 @@
+<svg>
+  <defs>    
+    <symbol id="exercise-stats" href="#tile-list-item" height="130" display="none">
+      <rect y="6" width="100%" height="100%" class="background-fill"/>
+      <text y="34" id="distance" class="workout stats subtext left"/>
+      <text y="34" id="style" class="workout stats subtext right"/>
+      <text y="62" id="timer" class="workout stats subtext left"/>
+      <text y="90" id="laps" class="workout stats subtext left"/>
+      <text y="90" id="avg" class="workout stats subtext right"/>
+      <text y="118" id="avg-rest" class="workout stats subtext right"/>
+      <svg  x="50%+5" y="40" id="equipment" height="28" class="workout stats subtext" display="none">
+        <rect width="140" height="100%" class="foreground-fill"/>
+        <image x="2" id="e-fins" class="icon" href="icon/fins.png" display="inherit"/>
+        <image x="30" id="e-paddles" class="icon" href="icon/paddles.png" display="inherit" />
+        <image x="58" id="e-pull-buoy" class="icon" href="icon/pull-buoy.png" display="inherit"/>
+        <image x="86" id="e-kickboard" class="icon" href="icon/kickboard.png" display="inherit"/>
+        <image x="114" id="e-snorkel" class="icon" href="icon/snorkler.png" display="inherit"/>
+      </svg>
+      <rect id="start-line" y="0" class="line application-fill"/>
+      <rect id="end-line" y="100%-6" class="line navigation-fill" />
+    </symbol>
+    
+    <symbol id="exercise-stats-virtual-list" class="tile-list" href="#tile-list">
+      <var id="virtual" value="1" />
+      <var id="reorder-enabled" value="0"/>
+      <var id="peek-enabled" value="0"/>
+      <var id="separator-height-bottom" value="2" />
+      
+      <use id="exercise-stats" href="#tile-list-pool">
+        <use id="exercise-stats[0]" href="#exercise-stats" />
+        <use id="exercise-stats[1]" href="#exercise-stats" />
+        <use id="exercise-stats[2]" href="#exercise-stats" />
+        <use id="exercise-stats[3]" href="#exercise-stats" />
+        <use id="exercise-stats[4]" href="#exercise-stats" />
+        <use id="exercise-stats[5]" href="#exercise-stats" />
+        <use id="exercise-stats[6]" href="#exercise-stats" />
+        <use id="exercise-stats[7]" href="#exercise-stats" />
+        <use id="exercise-stats[8]" href="#exercise-stats" />
+        <use id="exercise-stats[9]" href="#exercise-stats" />
+        <use id="exercise-stats[10]" href="#exercise-stats" />
+      </use>
+    </symbol>
+  </defs>
+</svg>

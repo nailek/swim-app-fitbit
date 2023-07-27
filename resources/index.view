@@ -1,0 +1,247 @@
+<svg class="background-fill" id="background">  
+  <animate attributeName="x" from="100%" to="0" begin="load" dur="0.25" easing="ease-in-out" />
+  <svg display="none">
+    <rect width="100%" height="99%" class="application-fill"/>
+    <image fill="white" href="icon/fins.png"/>
+    <use id="test-icon" href="#icon-text-button" class="icon-text-button bottom alarm-fill" />
+  </svg>
+  /* main screen */
+  <svg id="main-screen">
+    <use href="#scrollview" id="free-scrollview" y="21" height="100%-54">
+      <use href="#scrollview-item" display="flexible-height">
+        <use id="main-free" href="#text-button" class="text-button navigation-fill" pointer-events="visible">
+          <set href="#text" attributeName="text-buffer" to="Free workout"/>
+        </use>
+      </use>
+      <use href="#scrollview-spacer" height="5"/>
+      <use href="#scrollview-item" display="flexible-height">
+        <use id="main-planned" href="#text-button" class="text-button navigation-fill">
+          <set href="#text" attributeName="text-buffer" to="Planned workout"/>
+        </use>
+      </use>
+      <use href="#scrollview-spacer" height="5"/>
+      <use href="#scrollview-item" display="flexible-height">
+        <use id="main-see-workouts" href="#text-button" class="text-button navigation-fill">
+          <set href="#text" attributeName="text-buffer" to="See workouts"/>
+        </use>
+      </use>
+      <use href="#scrollview-spacer" height="5"/>
+      <use href="#scrollview-item" display="flexible-height">
+        <use id="main-sync" href="#text-button" class="text-button navigation-fill" pointer-events="visible">
+          <set href="#text" attributeName="text-buffer" to="Sync phone"/>
+        </use>
+      </use>
+      <use href="#scrollview-spacer" height="5"/>
+      <use href="#scrollview-item" display="flexible-height">
+        <use id="main-exit" href="#text-button" class="text-button navigation-fill" pointer-events="visible">
+          <set href="#text" attributeName="text-buffer" to="Exit app"/>
+        </use>
+      </use>
+      <use href="#scrollview-spacer" height="5"/>
+      <use href="#scrollview-item" display="flexible-height">
+        <use id="main-delete-logs" href="#text-button" class="text-button alarm-fill" pointer-events="visible">
+          <set href="#text" attributeName="text-buffer" to="Delete workout logs"/>
+        </use>
+      </use>
+      <use href="#scrollview-spacer" height="5"/>
+      <use href="#scrollview-item" display="flexible-height">
+        <use id="main-delete-all" href="#text-button" class="text-button alarm-fill" pointer-events="visible">
+          <set href="#text" attributeName="text-buffer" to="Delete All"/>
+        </use>
+      </use>
+    </use>
+    <section>
+      <rect width="100%" height="20" class="background-fill"/>
+      <text x="35%" y="15" id="main-log-num" class="background-fill subtext"/>
+      <text x="50%" y="15" class="background-fill subtext time-text"/>
+      <text x="65%" y="15" id="main-battery" class="background-fill subtext"/>
+    </section>
+    <rect width="100%" y="100%-33" height="33" class="background-fill"/>
+    <text id="main-status" class="background-text subtext" y="100%-15"></text>
+    <use id="main-confirmation-exit" href="#text-left-right" display="none"/>
+  </svg>
+  /* main screen */
+  /* free screen */
+  <svg id="free-screen" display="none">
+    <use href="#scrollview" id="free-scrollview">
+      <use href="#scrollview-spacer" height="20"/>
+      <use href="#plus-minus-select" id="free-lap-size"/>
+      <use href="#scrollview-spacer"/>
+      <use href="#plus-minus-select" id="free-lap-total"/>
+      <use href="#scrollview-spacer"/>
+      <use href="#scrollview-item" height="96">
+        <rect width="100%" height="100%" class="background-fill"/>
+        <svg id="free-start-menu" display="none">
+          /* First exercise */
+          <use id="free-start-workout" href="#text-button" class="text-button left navigation-fill" pointer-events="visible">
+            <set href="#text" attributeName="text-buffer" to="Start"/>
+          </use>
+          <use id="free-back" href="#text-button" class="text-button right application-fill" pointer-events="visible">
+            <set href="#text" attributeName="text-buffer" to="Back"/>
+          </use>
+          /* First exercise */
+        </svg>
+        /* Next exercises */
+        <svg id="free-next-menu" display="none">
+          <rect width="100%" height="100%" class="background-fill"/>
+          <use id="free-next" href="#textarea-button" class="text-button left navigation-fill" pointer-events="visible">
+            <set href="#text" attributeName="text-buffer" to="Next   exercise"/>
+          </use>
+          <use id="free-end" href="#textarea-button" class="text-button right alarm-fill" pointer-events="visible">
+            <set href="#text" attributeName="text-buffer" to="End     workout"/>
+          </use>
+        </svg>
+        /* Next exercises */
+      </use>
+      <use href="#stroke-select" id="free-stroke-select"/>
+      <use href="#scrollview-spacer" class="application-fill"/>
+      <use href="#equipment-select" id="free-equipment-select"/>
+      <use href="#scrollview-spacer" class="application-fill" height="20"/>
+    </use>
+  </svg>
+  /* free screen */
+  /* plan screen */
+  <svg id="plan-screen-off" display="none">
+      <text id="plan-raw" class="subtext" display="none"/>
+      <use href="#scrollview" class="background-fill">
+        <use href="#scrollview-item" display="flexible-height">
+          <use x="5%" width="90%" id="plan-text-prep" href="#dynamic-textarea" fill="white" y="50">
+            <set href="#text" attributeName="text-buffer" to="Placeholder text" />
+          </use>
+        </use>
+        <use href="#scrollview-spacer" height="10" class="background-fill"/>
+        <use href="#scrollview-item" display="flexible-height">
+          <use id="plan-next-off" href="#text-button" class="text-button left foreground-fill" pointer-events="visible">
+            <set href="#text" attributeName="text-buffer" to="Next"/>
+          </use>
+          <use id="plan-back-off" href="#text-button" class="text-button right application-fill" pointer-events="visible">
+            <set href="#text" attributeName="text-buffer" to="Back"/>
+          </use>
+        </use>
+      </use>
+  </svg>
+  /* plan screen */
+  /* workout screen */
+  <svg id="workout-screen" display="none">
+    /* running screen */
+    <svg id="workout-running">
+      <text id="workout-distance" class="workout subtext header left"/>
+      <text class="workout subtext header right time-text"/>
+      <text id="workout-avg" class="workout subtext sub-header left"/>
+      <text id="workout-timer-total" class="workout subtext sub-header right"/>
+      <text id="workout-timer" class="workout-timer"/>
+    </svg>
+    /* running screen */
+    /* end screen */
+    <use id="workout-end" href="#tile-list" class="horizontal-pad" height="100%" display="none">
+      <var id="reorder-enabled" value="0" />
+      <var id="align-mode" value="1" />
+      
+      <use href="#tile-list-item" height="100%">
+        <text class="workout subtext header right time-text"/>
+        <text id="workout-end-start-stop-count" y="100" class="workout regulartext right"/>
+        <text id="workout-end-timer" y="125" class="workout regulartext left"/>
+        <text id="workout-end-timer-total" y="160" class="workout regulartext left"/>
+        <text id="workout-end-lap-count" y="160" class="workout regulartext right"/>
+        <text id="workout-end-rest-time" y="195" class="workout regulartext left"/>
+        <use id="workout-end-next-lap" display="inherit" href="#text-button" class="text-button left navigation-fill" pointer-events="visible">
+          <set href="#text" attributeName="text-buffer" to="Next lap"/>
+        </use>
+        <use id="workout-end-confirmation-exit" href="#text-left-right"/>
+      </use>
+      /* stats screen */
+      <use href="#tile-list-item" height="100%">
+        <text class="workout subtext header right time-text"/>
+        <text id="workout-end-style" y="64" class="workout subtext left"/>
+        <text id="workout-end-distance" y="92" class="workout subtext left"/>
+        <text id="workout-end-avg" y="120" class="workout subtext left"/>
+        <svg id="workout-end-equipment" y="148" height="28" class="workout subtext left">
+          <rect width="140" height="100%" class="foreground-fill"/>
+          <image x="2" id="e-fins" class="icon" href="icon/fins.png" display="none"/>
+          <image x="30" id="e-paddles" class="icon" href="icon/paddles.png" display="none" />
+          <image x="58" id="e-pull-buoy" class="icon" href="icon/pull-buoy.png" display="none"/>
+          <image x="86" id="e-kickboard" class="icon" href="icon/kickboard.png" display="none"/>
+          <image x="114" id="e-snorkel" class="icon" href="icon/snorkel.png" display="none"/>
+        </svg>
+      </use>
+      /* stats screen */
+    </use>
+    /* end screen */
+  </svg>
+  /* workout screen */
+  /* view workout screen */
+  <svg id="view-screen" display="none">
+    <use id="view-exercise-virtual-list" class="tile-list" href="#tile-list">
+      <var id="virtual" value="1" />
+      <var id="reorder-enabled" value="0"/>
+      <var id="peek-enabled" value="0"/>
+      <var id="separator-height-bottom" value="2" />
+      
+      <use id="workout-data" href="#tile-list-pool">
+        <use id="workout-data[0]" href="#workout-data" />
+        <use id="workout-data[1]" href="#workout-data" />
+        <use id="workout-data[2]" href="#workout-data" />
+        <use id="workout-data[3]" href="#workout-data" />
+        <use id="workout-data[4]" href="#workout-data" />
+        <use id="workout-data[5]" href="#workout-data" />
+        <use id="workout-data[6]" href="#workout-data" />
+        <use id="workout-data[7]" href="#workout-data" />
+        <use id="workout-data[8]" href="#workout-data" />
+        <use id="workout-data[9]" href="#workout-data" />
+        <use id="workout-data[10]" href="#workout-data" />
+      </use>
+    </use>
+  </svg>
+  <use id="view-popup" href="#text-left-right" display="none"/>
+  /* view workout screen */
+  /* edit workout screen */
+  <svg id="edit-screen" display="none">
+    <use id="edit-exercise-stats" class="tile-list" href="#exercise-stats-virtual-list">
+    </use>
+    /* edit pop-up */
+    <use id="edit-yes" display="inherit" href="#text-button" class="text-button bottom left navigation-fill" pointer-events="visible">
+      <set href="#text" attributeName="text-buffer" to="Edit"/>
+    </use>
+    <use id="edit-no" display="none" href="#text-button" class="text-button bottom left navigation-fill" pointer-events="visible">
+      <set href="#text" attributeName="text-buffer" to="Edited"/>
+    </use>
+    <use id="edit-done" display="inherit" href="#text-button" class="text-button bottom right application-fill" pointer-events="visible">
+      <set href="#text" attributeName="text-buffer" to="Done"/>
+    </use>
+    /* edit pop-up */
+  </svg>
+  /* edit workout screen */
+  /* select workout screen */
+  <svg id="view-workout-log-screen" display="none">
+    
+  </svg>
+  /* select workout screen */
+  <svg id="plan-screen" class="background-fill" display="none">
+    <rect width="100%" height="100%"/>
+    <use id="plan-exercise-stats" class="tile-list" href="#exercise-stats-virtual-list"/>
+    <use id="plan-back" href="#text-button" class="text-button bottom right application-fill" pointer-events="visible">
+      <set href="#text" attributeName="text-buffer" to="Back"/>
+    </use>
+  </svg>
+  <svg id="test-2-screen" display="none">
+    <text id="1" class="usualText" y="25%">Free workout</text>
+    <text id="2" class="usualText" y="50%">Planned Workout</text>
+    <text id="3" class="usualText" y="75%">Refresh planning</text>
+    <text id="status" class="status" y="90%" />
+  </svg>
+  <svg id="help" display="none">  
+    <rect width="100%" height="100%" fill="black"/>
+    <use href="#dynamic-textarea" y="15" y = "15">
+      <set href="#text" attributeName="text-buffer" to=
+           "    Calent 100
+    Crol D 4x25 Long Dog
+    Crol   4x25 Lateral Kick 
+                  E:Aletes
+    Crol   2x50 1.20/50m  R45s
+    Breast 2x50 1.25/50m  R45s
+    Crol   4x25 0.40/25m  R20s
+    Crol   2x50 1.20/50m  R30s
+    Refred 100" />
+    </use>
+  </svg>
+</svg>

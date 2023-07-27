@@ -1,0 +1,30 @@
+.stroke-select {
+  font-size: 28;
+  text-length: 32;
+  text-anchor: start;
+  height: 215;
+}
+
+.stroke-select .checkbox {
+  fill: dimgray;
+  x: $;
+  y: $+5;
+}
+
+.stroke-select text {
+  x: $+5;
+  y: $-12;
+  fill: white;
+  text-anchor: start;
+}
+
+.stroke-select textarea {
+  x: $+5;
+  y: 4;
+  rows: 2;
+  fill: white;
+}
+
+.stroke-select .non-stroke {
+  fill: orange;
+}

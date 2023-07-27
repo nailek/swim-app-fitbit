@@ -1,0 +1,13 @@
+
+
+.medium-text {
+  font-size: 28;
+}
+
+.row {
+  height: 64;
+}
+
+.row #text {
+  y: 40;
+}

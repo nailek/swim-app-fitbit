@@ -1,0 +1,121 @@
+<svg>
+  <defs>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="import" href="/mnt/sysassets/system_widget.defs" />
+    <link rel="import" href="/mnt/sysassets/widgets/baseview_widget.defs" />
+    <link rel="import" href="/mnt/sysassets/widgets/text_button.defs" />
+    <link rel="import" href="/mnt/sysassets/widgets/scrollview_widget.defs" />
+    <link rel="import" href="/mnt/sysassets/widgets/checkbox.defs" />
+    
+    <link rel="import" href="/mnt/sysassets/widgets/icon_button.defs" />
+    
+    <link rel="import" href="/mnt/sysassets/widgets/scrollbar.defs" />
+    <link rel="import" href="/mnt/sysassets/widgets/tile_list_widget.defs" />
+    
+    <link rel='import' href='symbols/componentViewExerciseStats.defs'/>
+    
+    <symbol id="scrollview-spacer" href="#scrollview-item" height="5">
+      <rect width="100%" height="100%"/>
+    </symbol>
+    
+    <symbol id="workout-data" href="#tile-list-item" height="90" display="none">
+      <rect y="6" width="100%" height="100%" class="background-fill"/>
+      <text y="34" id="distance" class="workout stats subtext left"/>
+      <text y="34" id="date" class="workout stats subtext right"/>
+      <text y="62" id="timer" class="workout stats subtext left"/>
+      <svg  x="50%+5" y="40" id="equipment" height="28" class="workout stats subtext" display="none">
+        <rect width="140" height="100%" class="foreground-fill"/>
+        <image x="2" id="e-fins" class="icon" href="icon/fins.png" display="inherit"/>
+        <image x="30" id="e-paddles" class="icon" href="icon/paddles.png" display="inherit" />
+        <image x="58" id="e-pull-buoy" class="icon" href="icon/pull-buoy.png" display="inherit"/>
+        <image x="86" id="e-kickboard" class="icon" href="icon/kickboard.png" display="inherit"/>
+        <image x="114" id="e-snorkel" class="icon" href="icon/snorkel.png" display="inherit"/>
+      </svg>
+      <rect id="end-line" y="100%-6" class="line application-fill" />
+      <rect id="touch" pointer-events="all" />
+    </symbol>
+    
+    <link rel="stylesheet" href="symbols/plus_min_select.css" />
+    <symbol id="plus-minus-select" href="#scrollview-item" class="background-fill medium-text">
+        <rect id="pm-background" width="100%" height="99%" class="background-fill"/>
+        <use x="0%" width="20%" id="pm-minus" href="#text-button" class="text-button application-fill row" pointer-events="visible">
+          <set href="#text" attributeName="text-buffer" to="-"/>
+        </use>
+        <use x="20%" width="60%" id="pm-title" href="#dynamic-textarea">
+          <set href="#text" attributeName="text-buffer" to="Title"/>
+        </use>
+        <use x="20%" width="60%" y="50%" height="50%" id="pm-text" href="#dynamic-textarea">
+          <set href="#text" attributeName="text-buffer" to="Text"/>
+        </use>
+        <use x="80%" width="20%" id="pm-plus" href="#text-button" class="text-button application-fill row" pointer-events="visible">
+          <set href="#text" attributeName="text-buffer" to="+"/>
+        </use>
+    </symbol>
+    
+    <link rel="stylesheet" href="symbols/stroke_select.css" />
+    <symbol id="stroke-select" href="#scrollview-item" class="stroke-select">
+      <rect width="100%" height="100%" class="background-fill"/>
+      <section x="4%" y="5" width="100">
+        <use id="s-front" href='#checkbox' class="checkbox" value="1"/>
+        <textarea id="s-front-text">Front crawl</textarea>
+      </section>
+      <section x="51%" y="5" width="100">
+        <use id="s-breast" href='#checkbox' class="checkbox"/>
+        <textarea id="s-breast-text">Breast stroke</textarea>
+      </section>
+      <section x="4%" y="80" width="100">
+        <use id="s-back" href='#checkbox' class="checkbox"/>
+        <textarea id="s-back-text">Back stroke</textarea>
+      </section>
+      <section x="51%" y="80" width="100">
+        <use id="s-drill" href='#checkbox' class="checkbox non-stroke"/>
+        <textarea  id="s-drill-text" class="non-stroke">It is a drill</textarea>
+      </section>
+      <section x="4%" y="160" width="100">
+        <use id="s-butterfly" href='#checkbox' class="checkbox"/>
+        <text id="s-butterfly-text">Butterfly</text>
+      </section>
+      <section x="51%" y="160" width="100">
+        <use id="s-medley" href='#checkbox' class="checkbox"/>
+        <text id="s-medley-text">Medley</text>
+      </section>
+    </symbol>
+    
+    <link rel="stylesheet" href="symbols/equipment_select.css" />
+    <symbol id="equipment-select" href="#scrollview-item" class="equipment-select foreground-fill">
+      <rect width="100%" height="100%"/>
+      <section x="7%" y="0" height="50">
+        <use id="e-fins" href='#checkbox' class="checkbox"/>
+        <image class="icon" href="icon/fins.png"/>
+      </section>
+      <section x="37%" y="2">
+        <use id="e-paddles" href='#checkbox' class="checkbox"/>
+        <image class="icon" href="icon/paddles.png"/>
+      </section>
+      <section x="67%" y="3">
+        <use id="e-pull-buoy" href='#checkbox' class="checkbox"/>
+        <image class="icon" href="icon/pull-buoy.png"/>
+      </section>
+      <section x="7%" y="55">
+        <use id="e-kickboard" href='#checkbox' class="checkbox"/>
+        <image class="icon" href="icon/kickboard.png"/>
+      </section>
+      <section x="37%" y="55" height="50">
+        <use id="e-snorkel" href='#checkbox' class="checkbox"/>
+        <image class="icon" href="icon/snorkel.png"/>
+      </section>
+    </symbol>
+    
+    
+    <symbol id="text-left-right" href="#scrollview-item" class="background-fill">      
+      <rect y="100%-130" height="130" width="100%" height="100%"/>
+      <text id="text" y="100%-102" class="background-text">Text</text>
+      <use id="text-left" display="inherit" href="#text-button" pointer-events="visible">
+        <set href="#text" attributeName="text-buffer" to="Left"/>
+      </use>
+      <use id="text-right" display="inherit" href="#text-button" pointer-events="visible">
+        <set href="#text" attributeName="text-buffer" to="Right"/>
+      </use>
+    </symbol>
+  </defs>
+</svg>

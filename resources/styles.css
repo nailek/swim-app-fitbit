@@ -1,0 +1,178 @@
+.application-fill           { fill: dimgray; }
+.navigation-fill            { fill: slategray; }
+.foreground-fill            { fill: darkgray; }
+.background-fill            { fill: black; }
+.alarm-fill                 { fill: red; }
+
+.application-fill #text {
+  fill: white;
+  text-anchor: middle;
+  text-length: 64;
+  text-transform: none;
+}
+
+.navigation-fill #text {
+  fill: white;
+  text-anchor: middle;
+  text-length: 64;
+  text-transform: none;
+}
+
+.background-fill #text {
+  fill: white;
+  text-anchor: middle;
+  text-length: 64;
+  text-transform: none;
+}
+
+.alarm-fill #text {
+  fill: white;
+  text-anchor: middle;
+  text-length: 64;
+  text-transform: none;
+}
+
+.background-fill text {
+  fill: white;
+  text-anchor: middle;
+  text-length: 64;
+  text-transform: none;
+}
+
+.background-text {
+  fill: white;
+  text-anchor: middle;
+  text-length: 99;
+  text-transform: none;
+  x: 50%;
+}
+
+.subtext {
+  font-size: 20;
+}
+
+.subtext.right {
+  text-anchor: end;
+  display-align: end;
+}
+
+.subtext.left {
+  text-anchor: start;
+  display-align: start;
+}
+
+.subtext.middle {
+  text-anchor: middle;
+  display-align: center;
+}
+
+#help {
+  fill: white;
+  font-size: 26;  
+  text-anchor: start;
+  display-align: start;
+  text-length: 64;
+}
+
+#help #text {
+  text-anchor: start;
+  display-align: start;
+}
+
+.text-button.medium-button {
+  height: 64;
+}
+
+.text-button.medium-button #text {
+  y: 40;
+}
+
+.workout-timer {
+  font-size: 80;
+  font-family: System-Bold;
+  text-length: 32;
+  text-anchor: middle;
+  x: 50%;
+  y: 50%+40;
+  fill: white;
+}
+
+.workout.subtext {
+  font-size: 26;
+  text-length: 32;
+  fill: white;
+}
+
+.workout.regulartext {
+  font-size: 32;
+  text-length: 32;
+  fill: white;
+}
+
+.workout.subtext.header {
+  y: 10%+13;
+  fill: white;
+}
+
+.workout.subtext.sub-header {
+  y: 20%+13;
+  fill: white;
+}
+
+.workout.subtext .icon {
+  height: 24;
+  width: 24;
+  y: 2;
+}
+
+.workout.right {
+  x: 90%;
+  text-anchor: end;
+  display-align: end;
+}
+
+.workout.left {
+  x: 10%;
+  text-anchor: start;
+  display-align: start;
+}
+
+.workout.middle {
+  x: 50%;
+  text-anchor: middle;
+  display-align: center;
+}
+
+.workout.stats {
+  font-size: 24;
+  text-length: 32;
+  fill: white;
+}
+.tile-list {
+  y: 5;
+  height: 204;
+}
+
+#workout-data #touch {
+  width: 100%;
+  height: 100%-6;
+  x: 0;
+  y: 0;
+  opacity: 0;
+}
+
+.line {
+  height: 5;
+  width: 100%;
+}
+
+#test-icon #text {
+  text-buffer: "";
+}
+
+#test-icon #image {
+  height: 25;
+  width: 25;
+  fill: white;
+  href: "icon/fins.png";
+}

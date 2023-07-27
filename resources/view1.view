@@ -1,0 +1,17 @@
+<svg class="background-fill" id="background-">
+  <animate attributeName="x" from="-100%" to="0" begin="load" dur="0.25" easing="ease-in-out" />
+  <svg id="help-test">
+    <rect width="100%" height="100%" fill="black"/>
+    <use href="#dynamic-textarea" fill="white" y="15" y = "15">
+      <set href="#text" attributeName="text-buffer" to=
+           "Calentament  100
+Crol D 50    Catch up
+Crol D 50    Head up/Down
+Crol   200   E:Aletes
+Crol   200   E:Aletes
+Crol D 50x2  Catch up E:Pales
+Crol   100x4
+Refred 100" />
+    </use>
+  </svg>
+</svg>
