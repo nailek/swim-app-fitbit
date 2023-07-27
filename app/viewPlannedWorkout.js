@@ -32,11 +32,12 @@ export function setTextRaw() {
 }
 
 export function setPlanView() {
+  let planRaw = document.getElementById("plan-text-prep");
   let workutData = getReadWorkoutFile();
   console.log(`Testing setText Planned`)
   if(workutData != undefined) {
     if(workutData[0] == undefined) {
-    planRaw.text = `There was an issue: ${workutData.msg}`;
+      planRaw.text = `There was an issue: ${workutData.msg}`;
     }
     exerciseStats.setViewExerciseStats("plan-exercise-stats", prepWorkoutData(workutData[0].rawWorkout));
   }
