@@ -1,0 +1,42 @@
+<svg class="background-fill" id="free-background">
+  <animate attributeName="x" from="100%" to="0" begin="load" dur="0.1" easing="ease-in-out" />
+  /* free screen */
+  <svg id="free-screen">
+    <use href="#scrollview" id="free-scrollview">
+      <use href="#scrollview-spacer" height="20"/>
+      <use href="#plus-minus-select" id="free-lap-size"/>
+      <use href="#scrollview-spacer"/>
+      <use href="#plus-minus-select" id="free-lap-total"/>
+      <use href="#scrollview-spacer"/>
+      <use href="#scrollview-item" height="96">
+        <rect width="100%" height="100%" class="background-fill"/>
+        <svg id="free-start-menu">
+          /* First exercise */
+          <use id="free-start-workout" href="#text-button" class="text-button left navigation-fill" pointer-events="visible">
+            <set href="#text" attributeName="text-buffer" to="Start"/>
+          </use>
+          <use id="free-back" href="#text-button" class="text-button right application-fill" pointer-events="visible">
+            <set href="#text" attributeName="text-buffer" to="Back"/>
+          </use>
+          /* First exercise */
+        </svg>
+        /* Next exercises */
+        <svg id="free-next-menu" display="none">
+          <rect width="100%" height="100%" class="background-fill"/>
+          <use id="free-next" href="#textarea-button" class="text-button left navigation-fill" pointer-events="visible">
+            <set href="#text" attributeName="text-buffer" to="Next   exercise"/>
+          </use>
+          <use id="free-end" href="#textarea-button" class="text-button right alarm-fill" pointer-events="visible">
+            <set href="#text" attributeName="text-buffer" to="End     workout"/>
+          </use>
+        </svg>
+        /* Next exercises */
+      </use>
+      <use href="#stroke-select" id="free-stroke-select"/>
+      <use href="#scrollview-spacer" class="application-fill"/>
+      <use href="#equipment-select" id="free-equipment-select"/>
+      <use href="#scrollview-spacer" class="application-fill" height="20"/>
+    </use>
+  </svg>
+  /* free screen */
+</svg>

@@ -28,12 +28,13 @@ export function setTextRaw() {
 }
 
 export function setPlanView() {
-  let planRaw = document.getElementById("plan-text-prep");
+  //let planRaw = document.getElementById("plan-text-prep");
   let workutData = getReadWorkoutFile();
   console.log(`Testing setText Planned`)
   if(workutData != undefined) {
     if(workutData[0] == undefined) {
-      planRaw.text = `There was an issue: ${workutData.msg}`;
+      //planRaw.text = `There was an issue: ${workutData.msg}`;
+      console.log(`There was an issue: ${workutData.msg}`)
       return;
     }
     
@@ -45,7 +46,8 @@ export function setPlanView() {
     
   }
   else {
-    planRaw.text = "No workout synced";
+    //planRaw.text = "No workout synced";
+    console.log("No workout synced")
   }
 }
 

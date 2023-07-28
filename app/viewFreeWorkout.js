@@ -1,5 +1,5 @@
 import * as document from "document";
-import {toMain, toStartWorkout, toEditWorkout} from "./viewManager";
+import {toStartWorkout, toEditWorkout} from "./viewManager";
 import * as componentPlusMinSelect from "./componentPlusMinSelect";
 import * as componentStrokeSelect from "./componentStrokeSelect";
 import * as componentEquipmentSelect from "./componentEquipmentSelect";
@@ -17,7 +17,8 @@ export function setView() {
   let startWorkout = document.getElementById("free-start-workout");
   
   back.addEventListener("click", (evt) => {
-    toMain();
+    console.log(document.history.length)
+    document.history.back();
   });
   
   startWorkout.addEventListener("click", (evt) => {

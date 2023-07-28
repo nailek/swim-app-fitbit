@@ -1,0 +1,53 @@
+<svg class="background-fill" id="workout-background">  
+  <animate attributeName="x" from="100%" to="0" begin="load" dur="0.1" easing="ease-in-out" />
+  <animate attributeName="x" to="0" begin="enable" dur="0.05"/>
+  <rect width="100%" height="100%" class="background-fill"/>
+  /* workout screen */
+  <svg id="workout-screen">
+    /* running screen */
+    <svg id="workout-running">
+      <text id="workout-distance" class="workout subtext header left"/>
+      <text class="workout subtext header right time-text"/>
+      <text id="workout-avg" class="workout subtext sub-header left"/>
+      <text id="workout-timer-total" class="workout subtext sub-header right"/>
+      <text id="workout-timer" class="workout-timer"/>
+    </svg>
+    /* running screen */
+    /* end screen */
+    <use id="workout-end" href="#tile-list" class="horizontal-pad" height="100%" display="none">
+      <var id="reorder-enabled" value="0" />
+      <var id="align-mode" value="1" />
+      
+      <use href="#tile-list-item" height="100%">
+        <text class="workout subtext header right time-text"/>
+        <text id="workout-end-start-stop-count" y="100" class="workout regulartext right"/>
+        <text id="workout-end-timer" y="125" class="workout regulartext left"/>
+        <text id="workout-end-timer-total" y="160" class="workout regulartext left"/>
+        <text id="workout-end-lap-count" y="160" class="workout regulartext right"/>
+        <text id="workout-end-rest-time" y="195" class="workout regulartext left"/>
+        <use id="workout-end-next-lap" display="inherit" href="#text-button" class="text-button left navigation-fill" pointer-events="visible">
+          <set href="#text" attributeName="text-buffer" to="Next lap"/>
+        </use>
+        <use id="workout-end-confirmation-exit" href="#text-left-right"/>
+      </use>
+      /* stats screen */
+      <use href="#tile-list-item" height="100%">
+        <text class="workout subtext header right time-text"/>
+        <text id="workout-end-style" y="64" class="workout subtext left"/>
+        <text id="workout-end-distance" y="92" class="workout subtext left"/>
+        <text id="workout-end-avg" y="120" class="workout subtext left"/>
+        <svg id="workout-end-equipment" y="148" height="28" class="workout subtext left">
+          <rect width="140" height="100%" class="foreground-fill"/>
+          <image x="2" id="e-fins" class="icon" href="icon/fins.png" display="none"/>
+          <image x="30" id="e-paddles" class="icon" href="icon/paddles.png" display="none" />
+          <image x="58" id="e-pull-buoy" class="icon" href="icon/pull-buoy.png" display="none"/>
+          <image x="86" id="e-kickboard" class="icon" href="icon/kickboard.png" display="none"/>
+          <image x="114" id="e-snorkel" class="icon" href="icon/snorkel.png" display="none"/>
+        </svg>
+      </use>
+      /* stats screen */
+    </use>
+    /* end screen */
+  </svg>
+  /* workout screen */
+</svg>

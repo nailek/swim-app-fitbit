@@ -19,39 +19,82 @@ let startStopCount;
 let settingWakeUpTime = 9;
 
 //Running
-const workoutDistance = document.getElementById("workout-distance");
-const workoutTime = document.getElementById("workout-time"); 
-const workoutRunningMenu = document.getElementById("workout-running");
+var workoutDistance;
+var workoutTime; 
+var workoutRunningMenu;
 
-const workoutTimer = document.getElementById("workout-timer");
-const workoutAvg = document.getElementById("workout-avg");
-const workoutTotalTimer = document.getElementById("workout-timer-total");
+var workoutTimer;
+var workoutAvg;
+var workoutTotalTimer;
 
 //Ended
-const workoutEndMenu = document.getElementById("workout-end");
+var workoutEndMenu;
 
-const workoutEndTime = document.getElementById("workout-end-time"); 
-const workoutEndNextLap = document.getElementById("workout-end-next-lap");
-const workoutEndDistance = document.getElementById("workout-end-distance");
-const workoutEndStyle = document.getElementById("workout-end-style");
-const workoutEndTimer = document.getElementById("workout-end-timer");
-const workoutEndTimerTotal = document.getElementById("workout-end-timer-total");
-const workoutEndLapCount = document.getElementById("workout-end-lap-count");
-const workoutEndStartStopCount = document.getElementById("workout-end-start-stop-count");
-const workoutEndAvg = document.getElementById("workout-end-avg");
-const workoutEndRestTime = document.getElementById("workout-end-rest-time");
+var workoutEndTime; 
+var workoutEndNextLap;
+var workoutEndDistance;
+var workoutEndStyle;
+var workoutEndTimer;
+var workoutEndTimerTotal;
+var workoutEndLapCount;
+var workoutEndStartStopCount;
+var workoutEndAvg;
+var workoutEndRestTime;
 
+function setElements() {
+  //Running
+  workoutDistance = document.getElementById("workout-distance");
+  workoutTime = document.getElementById("workout-time"); 
+  workoutRunningMenu = document.getElementById("workout-running");
+
+  workoutTimer = document.getElementById("workout-timer");
+  workoutAvg = document.getElementById("workout-avg");
+  workoutTotalTimer = document.getElementById("workout-timer-total");
+
+  //Ended
+  workoutEndMenu = document.getElementById("workout-end");
+
+  workoutEndTime = document.getElementById("workout-end-time"); 
+  workoutEndNextLap = document.getElementById("workout-end-next-lap");
+  workoutEndDistance = document.getElementById("workout-end-distance");
+  workoutEndStyle = document.getElementById("workout-end-style");
+  workoutEndTimer = document.getElementById("workout-end-timer");
+  workoutEndTimerTotal = document.getElementById("workout-end-timer-total");
+  workoutEndLapCount = document.getElementById("workout-end-lap-count");
+  workoutEndStartStopCount = document.getElementById("workout-end-start-stop-count");
+  workoutEndAvg = document.getElementById("workout-end-avg");
+  workoutEndRestTime = document.getElementById("workout-end-rest-time");
+}
 //TODO: Fix Varied, open water display
+
+//Call only once
+function setView() {
+  setElements();
+  console.log("Start")
+  workoutEndNextLap.addEventListener("click", () => {
+    console.log("End")
+    prepareNextLap(refLaps[refLaps.length-1].distance);
+    statusStartTimer();
+  });
+  
+  componentTextLeftRight.setUp("workout-end-confirmation-exit", "Finished?", "Yes", "No", 
+    () => {statusEndExercise();}, 
+    () => {statusStartTimer();})
+  componentTextLeftRight.setLeftClass("workout-end-confirmation-exit","navigation-fill");
+  componentTextLeftRight.setRightClass("workout-end-confirmation-exit","application-fill");
+  console.log("   End Set view - Workout Clock")
+}
 
 // --- Init Screen --- //
 export function startTimer(workoutData) {
   refWorkoutData = workoutData;
-  //console.log(`Test ${workoutData.exercises.length}`)
   refExercise = workoutData.exercises[workoutData.exercises.length-1];
   refSummary = refExercise.summary;
   refExercise.startTime = utils.formatDate(new Date());
   refExercise.laps = []
   refLaps = refExercise.laps;
+  
+  setView()
   
   prepareNextLap(refSummary.distance);
   if (refSummary.distance != undefined) {
@@ -61,6 +104,7 @@ export function startTimer(workoutData) {
   statusStartTimer();
   
   document.addEventListener("keypress", backButtonBehaviour);
+
 }
 // --- Init Screen --- //
 
@@ -95,17 +139,6 @@ const backButtonBehaviour = (evt) => {
     }
   }
 }
-
-workoutEndNextLap.addEventListener("click", () => {
-  prepareNextLap(refLaps[refLaps.length-1].distance);
-  statusStartTimer();
-});
-
-componentTextLeftRight.setUp("workout-end-confirmation-exit", "Finished?", "Yes", "No", 
-      () => {statusEndExercise();}, 
-      () => {statusStartTimer();})
-componentTextLeftRight.setLeftClass("workout-end-confirmation-exit","navigation-fill");
-componentTextLeftRight.setRightClass("workout-end-confirmation-exit","application-fill");
 
 // --- Events --- //
 
@@ -145,14 +178,18 @@ function statusEndExercise() {
 
 // --- Functions --- //
 function prepareNextLap(distance) {
+  console.log("prepareNextLap", JSON.stringify(refLaps))
   let lap = {runningTime:0, lapRest:0, distance:distance}
   refLaps.push(lap);
+  console.log("prepareNextLap", JSON.stringify(refLaps))
   workoutTotalTimer.text = "";
+  console.log("prepareNextLap -fail?")
   updateTimer();
   startStopCount = 0;
 }
 
 function updateTimer(evt) {
+  console.log("Update Timer")
   workoutTimer.text = utils.printTime(refLaps[refLaps.length-1].runningTime);
   
   if (refLaps[refLaps.length-1].distance != undefined) {

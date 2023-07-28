@@ -12,9 +12,7 @@ import { me } from "appbit";
 import * as componentTextLeftRight from "./componentTextLeftRight";
 
 let main = document.getElementById("main-screen");
-let freeWorkout = document.getElementById("free-screen");
 let planWorkout = document.getElementById("plan-screen");
-let workoutClock = document.getElementById("workout-screen");
 let editWorkout = document.getElementById("edit-screen");
 let viewWorkouts = document.getElementById("view-screen");
 
@@ -27,9 +25,7 @@ function allNone() {
     isAppInitiated = true;
   }
   main.style.display="none";
-  freeWorkout.style.display="none";
   planWorkout.style.display="none";
-  workoutClock.style.display="none";
   editWorkout.style.display="none";
   viewWorkouts.style.display="none";
   clockManager.stopClock(viewMain.updateMainHeader);
@@ -42,8 +38,21 @@ const backButtonBehaviour = (evt) => {
   }
 }
 
+
+
 export function preventBackButton() {
+  console.log("PreventBack");
   document.addEventListener("keypress", backButtonBehaviour);
+}
+
+export function swipeBehaviour(backgroundId, behaviour = "prevent") {
+  document.addEventListener("beforeunload",  (evt) => {
+    console.log("PreventBackSwipe");
+    evt.preventDefault();
+    // reset the position of the second view
+    document.getElementById(backgroundId).animate("enable");
+    // or, reset the X coordinate
+  });
 }
 
 export function setListeners() {
@@ -52,7 +61,6 @@ export function setListeners() {
   
   preventBackButton();
  
-  viewFreeWorkout.setView();
   viewPlannedWorkout.setView();
   fileManager.setListenerReceiveFile();
   fileManager.setListenerReceiveMessages();
@@ -73,19 +81,26 @@ export function toMain() {
 }
 
 export function toFreeWorkout() {
-  allNone();
-  freeWorkout.style.display="inherit";
-  clockManager.toGranularityOff();
-  
-  viewFreeWorkout.setViewNextWorkout();
+  document.location.assign("free.view").then(() => {
+    preventBackButton();
+    //swipeBehaviour("free-background", "back");
+    
+    viewFreeWorkout.setView();
+    clockManager.stopClock(viewMain.updateMainHeader);
+    clockManager.toGranularityOff();
+    viewFreeWorkout.setViewNextWorkout();
+  });
 }
 
 export function toFreeWorkoutNextExercise(workoutData) {
-  allNone();
-  freeWorkout.style.display="inherit";
-  clockManager.toGranularityOff();
-  
-  viewFreeWorkout.setViewNextExercise(workoutData);
+  document.location.assign("free.view").then(() => {
+    preventBackButton();
+   
+    viewFreeWorkout.setView();
+    clockManager.stopClock(viewMain.updateMainHeader);
+    clockManager.toGranularityOff();
+    viewFreeWorkout.setViewNextExercise(workoutData);
+  });
 }
 
 export function toPlannedWorkout() {
@@ -95,11 +110,14 @@ export function toPlannedWorkout() {
 }
 
 export function toStartWorkout(workoutData) {
-  allNone();
-  workoutClock.style.display="inherit";
-  clockManager.toGranularitySeconds();
-  
-  viewWorkoutClock.startTimer(workoutData);
+  console.log(document.history.length)
+  document.location.assign("workout.view").then(() => {
+    preventBackButton();
+    console.log(document.history.length)
+    swipeBehaviour("workout-background");
+    clockManager.toGranularitySeconds();
+    viewWorkoutClock.startTimer(workoutData);
+  });
 }
 
 export function toEditWorkout(workout) {
