@@ -11,7 +11,7 @@
     "appUUID": "fa2d3ba9-a12c-4a8b-ae62-50a71896c9c6",
     "appType": "app",
     "appDisplayName": "Swim App",
-    "iconFile": "resources/icon.png",
+    "iconFile": "resources/icon/icon.png",
     "wipeColor": "#ffffff",
     "requestedPermissions": [
       "access_internet",
