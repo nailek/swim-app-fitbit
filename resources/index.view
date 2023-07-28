@@ -101,24 +101,15 @@
   </svg>
   /* free screen */
   /* plan screen */
-  <svg id="plan-screen-off" display="none">
-      <text id="plan-raw" class="subtext" display="none"/>
-      <use href="#scrollview" class="background-fill">
-        <use href="#scrollview-item" display="flexible-height">
-          <use x="5%" width="90%" id="plan-text-prep" href="#dynamic-textarea" fill="white" y="50">
-            <set href="#text" attributeName="text-buffer" to="Placeholder text" />
-          </use>
-        </use>
-        <use href="#scrollview-spacer" height="10" class="background-fill"/>
-        <use href="#scrollview-item" display="flexible-height">
-          <use id="plan-next-off" href="#text-button" class="text-button left foreground-fill" pointer-events="visible">
-            <set href="#text" attributeName="text-buffer" to="Next"/>
-          </use>
-          <use id="plan-back-off" href="#text-button" class="text-button right application-fill" pointer-events="visible">
-            <set href="#text" attributeName="text-buffer" to="Back"/>
-          </use>
-        </use>
-      </use>
+  <svg id="plan-screen" class="background-fill" display="none">
+    <rect width="100%" height="100%"/>
+    <use id="plan-exercise-stats" class="tile-list" href="#exercise-stats-virtual-list"/>
+    <use id="plan-back" href="#text-button" class="text-button bottom right navigation-fill" pointer-events="visible">
+      <set href="#text" attributeName="text-buffer" to="Back"/>
+    </use>
+    <use id="plan-start" href="#text-button" class="text-button bottom left application-fill" pointer-events="visible">
+      <set href="#text" attributeName="text-buffer" to="Start"/>
+    </use>
   </svg>
   /* plan screen */
   /* workout screen */
@@ -216,32 +207,10 @@
     
   </svg>
   /* select workout screen */
-  <svg id="plan-screen" class="background-fill" display="none">
-    <rect width="100%" height="100%"/>
-    <use id="plan-exercise-stats" class="tile-list" href="#exercise-stats-virtual-list"/>
-    <use id="plan-back" href="#text-button" class="text-button bottom right application-fill" pointer-events="visible">
-      <set href="#text" attributeName="text-buffer" to="Back"/>
-    </use>
-  </svg>
   <svg id="test-2-screen" display="none">
     <text id="1" class="usualText" y="25%">Free workout</text>
     <text id="2" class="usualText" y="50%">Planned Workout</text>
     <text id="3" class="usualText" y="75%">Refresh planning</text>
     <text id="status" class="status" y="90%" />
-  </svg>
-  <svg id="help" display="none">  
-    <rect width="100%" height="100%" fill="black"/>
-    <use href="#dynamic-textarea" y="15" y = "15">
-      <set href="#text" attributeName="text-buffer" to=
-           "    Calent 100
-    Crol D 4x25 Long Dog
-    Crol   4x25 Lateral Kick 
-                  E:Aletes
-    Crol   2x50 1.20/50m  R45s
-    Breast 2x50 1.25/50m  R45s
-    Crol   4x25 0.40/25m  R20s
-    Crol   2x50 1.20/50m  R30s
-    Refred 100" />
-    </use>
   </svg>
 </svg>

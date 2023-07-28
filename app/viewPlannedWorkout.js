@@ -7,14 +7,10 @@ let initiated = false;
 
 export function setView() {
   let back = document.getElementById("plan-back");
-  let next = document.getElementById("plan-next");
   
   back.addEventListener("click", (evt) => {
     toMain();
   });
-  /*
-  next.addEventListener("click", (evt) => {
-  });*/
 }
 export function setTextRaw() {
   let planRaw = document.getElementById("plan-text-prep");
@@ -38,8 +34,15 @@ export function setPlanView() {
   if(workutData != undefined) {
     if(workutData[0] == undefined) {
       planRaw.text = `There was an issue: ${workutData.msg}`;
+      return;
     }
+    
+    let start = document.getElementById("plan-start");
+    start.addEventListener("click", (evt) => {
+      
+    });
     exerciseStats.setViewExerciseStats("plan-exercise-stats", prepWorkoutData(workutData[0].rawWorkout));
+    
   }
   else {
     planRaw.text = "No workout synced";
