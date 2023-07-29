@@ -100,7 +100,7 @@ export function keepHeaderUpdated() {
   clockManager.toGranularitySeconds();
   clockManager.startClock(updateHeaderFunc);
 
-  setTimeout(clockManager.toGranularityMinutes, 1500);
+  //setTimeout(clockManager.toGranularityMinutes, 1500);
 }
 
 export const updateHeaderFunc = (evt) => {

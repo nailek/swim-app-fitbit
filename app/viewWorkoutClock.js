@@ -115,7 +115,7 @@ const runningTimer = (evt) => {
   if(refLaps[refLaps.length-1].runningTime%settingWakeUpTime==settingWakeUpTime-1) { 
     display.poke();
     
-    document.getElementById("background").x = 0;  
+    document.getElementById("workout-background").x = 0;
   }
 }
 
@@ -178,18 +178,14 @@ function statusEndExercise() {
 
 // --- Functions --- //
 function prepareNextLap(distance) {
-  console.log("prepareNextLap", JSON.stringify(refLaps))
   let lap = {runningTime:0, lapRest:0, distance:distance}
   refLaps.push(lap);
-  console.log("prepareNextLap", JSON.stringify(refLaps))
   workoutTotalTimer.text = "";
-  console.log("prepareNextLap -fail?")
   updateTimer();
   startStopCount = 0;
 }
 
 function updateTimer(evt) {
-  console.log("Update Timer")
   workoutTimer.text = utils.printTime(refLaps[refLaps.length-1].runningTime);
   
   if (refLaps[refLaps.length-1].distance != undefined) {
