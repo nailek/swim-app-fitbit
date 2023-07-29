@@ -33,10 +33,10 @@ export function setView() {
   });
   
   end.addEventListener("click", (evt) => {
-    toEditWorkout(workoutData);
     if (workoutData.exercises.length > 0) {
       dataManagement.saveWorkout(workoutData);
     }
+    toEditWorkout(workoutData);
   });
   
   setLapSizeButtons();

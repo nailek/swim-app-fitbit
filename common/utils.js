@@ -2,6 +2,7 @@ import { display } from "display";
 import * as document from "document";
 import { preferences } from "user-settings";
 import { battery } from "power";
+import * as clockManager from "./clockManager";
 
 // Add zero in front of numbers < 10
 export function zeroPad(i) {
@@ -95,12 +96,20 @@ export function getElement(element) {
   }
 }
 
-let timeElements;
+export function keepHeaderUpdated() {
+  clockManager.toGranularitySeconds();
+  clockManager.startClock(updateHeaderFunc);
+
+  setTimeout(clockManager.toGranularityMinutes, 1500);
+}
+
+export const updateHeaderFunc = (evt) => {
+  updateTime(evt);
+  updateBatteryHeader();
+}
 
 export function updateTime(evt) {
-  if (timeElements == undefined) {
-    timeElements = document.getElementsByClassName("time-text");
-  }
+  let timeElements = document.getElementsByClassName("time-text");
   let today = evt.date;
   let hours = today.getHours();
   if (preferences.clockDisplay === "12h") {
@@ -116,10 +125,16 @@ export function updateTime(evt) {
   }
 }
 
-export function updateMainHeader() {
+export function updateBatteryHeader() {
   let batteryText = Math.floor(battery.chargeLevel) + "%";
-  let element = document.getElementById("main-battery");
-  element.text = `${batteryText}`;
+  var batteryElements = document.getElementsByClassName("battery-text");
+  for(var element of batteryElements) {
+    element.text = `${batteryText}`;
+  }
+}
+
+export function historyToRoot() {
+  document.history.go(-document.history.length+1);
 }
 
 /*Retribution:

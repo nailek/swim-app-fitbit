@@ -1,6 +1,6 @@
 import * as document from "document";
 import * as utils from "../common/utils";
-import * as clockManager from "./clockManager";
+import * as clockManager from "../common/clockManager";
 import {toFreeWorkoutNextExercise} from "./viewManager";
 import {display} from "display";
 import * as dataManagement from "./dataManagement";

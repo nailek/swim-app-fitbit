@@ -22,8 +22,12 @@ export function setView() {
     setViewExerciseStats(prepWorkoutData(workoutDatas));
   }
   else {
-    toMain();
+    document.history.back();
   }
+}
+
+export function hasWorkouts() {
+  return fileManagement.getReadAllWorkoutFiles().length > 0;
 }
 
 //TODO: Order by date!
@@ -87,6 +91,6 @@ function setExerciseStatsElement(tile, data) {
   utils.setEquipmentHideShow(data.equipment, exerciseElement, "e-fins", "e-paddles", "e-pull-buoy", "e-kickboard", "e-snorkel");
   let touch = tile.getElementById("touch");
   touch.addEventListener("click", (evt) => {
-    toEditWorkout(data.workoutData);
+    toEditWorkout(data.workoutData, true);
   });
 }

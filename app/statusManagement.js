@@ -1,68 +1,71 @@
 import * as document from "document";
 import * as utils from "../common/utils";
-import * as clockManager from "./clockManager";
+import * as clockManager from "../common/clockManager";
 
 let statusElement;
 let statusBuffer = [];
-let stoppingTimes;
 let timeOfStatus = 3;
+let runningTimer = timeOfStatus;
 let standByText = "";
+let standByTimer = 15;
 
 const animationStatus = (evt) => {
-  console.log(`Status ${JSON.stringify(statusBuffer)} - ${stoppingTimes}`);
-  if(statusElement == undefined || stoppingTimes <= 0) {
+  console.log(`Status ${JSON.stringify(statusBuffer)} - ${runningTimer} - Standby: ${standByText}`);
+  if (statusElement === undefined) {
     stopAnimation();
+    return;
   }
-  let number = evt.date.getSeconds()%timeOfStatus;
-  if(statusBuffer.length > 0) {
-    if(number != 0) {
-      return;
+  if (statusBuffer.length === 0) {
+    if (isStandByMode()) {
+      if (standByTimer > 0) {
+        console.log(`runningTimer ${standByTimer}`)
+        standByTimer--;
+        let text = standByText;
+        for (let i = 0; i < standByTimer%3; i++) {
+          text += ".";
+        }
+        statusElement.text = text;
+      }
+      else {
+        standByText = "";
+        stopAnimation();
+      }
     }
-    statusElement.text = statusBuffer[statusBuffer.length-1];
+    else {
+      stopAnimation();
+    }
+    return;
+  }
+  if(runningTimer <= 0){
     statusBuffer.pop();
+    runningTimer = timeOfStatus;
+    (evt) => animationStatus(evt);
+    return;
   }
-  else if(standByText != "" && stoppingTimes > 0) {
-    console.log(`stopingTimes ${stoppingTimes}`)
-    stoppingTimes--;
-    let text = standByText;
-    for (let i = 0; i < number; i++) {
-      text += ".";
-    }
-    statusElement.text = text;
-  } 
-  else {
-    stopAnimation();
-  }
+  statusElement.text = statusBuffer[statusBuffer.length-1];
+  runningTimer--;
+  standByTimer--;
 }
 
 export function setUp(elementID) {
-  let element = utils.getElement(elementID);
-  if (element == statusElement) {
-    if (stoppingTimes == 0) {
-      clockManager.startClock(animationStatus);
-    }
-    stoppingTimes == 15;
-    return;
-  }
-  statusElement = element;
+  statusElement = utils.getElement(elementID);
   
   clockManager.startClock(animationStatus);
-  stoppingTimes = 15;
 }
 
 export function stopAnimation(text = " ") {
-  stoppingTimes = 0;
-  console.log("Stop Status Set");
+  runningTimer = timeOfStatus;
+  console.log("Stop Status Animation");
   clockManager.stopClock(animationStatus);
   if(statusElement != undefined) {
-    console.log(`  hey ${text}`);
     statusElement.text = text;
   }
 }
 
 export function setStandByText(text = "") {
+  console.log(`setStandByText ${text}`)
   standByText = text;
-  stoppingTimes = 15;
+  standByTimer = 15;
 }
 
 export function standByTextOff() {
@@ -70,5 +73,16 @@ export function standByTextOff() {
 }
 
 export function addStatus(text) {
+  if(statusBuffer.length == 0) {
+    runningTimer = timeOfStatus;
+  }
   statusBuffer.unshift(text);
+}
+
+function isStandByMode() {
+  return standByText !== "";
+}
+
+function setStandByTextTime() {
+  standByTimer = 15;
 }

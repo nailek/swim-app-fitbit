@@ -4,6 +4,7 @@ import { inbox, outbox } from "file-transfer";
 import * as fs from "fs";
 import * as statusManagement from "./statusManagement";
 import * as messaging from "messaging";
+import * as clockManager from "../common/clockManager";
 import * as viewPlannedWorkout from "./viewPlannedWorkout"
 
 let searchFile;
@@ -64,6 +65,7 @@ export function setListenerReceiveFile() {
   
   // Event occurs when new file(s) are received  
   inbox.onnewfile = () => {
+    clockManager.toGranularitySeconds();
     statusManagement.setUp("main-status");
     console.log("New file!");
     let fileName;
@@ -94,10 +96,7 @@ export function setListenerReceiveMessages() {
 }
 
 export function requestWorkoutFileCompanion() {
-  //TODO: demand file to be sent
-  statusManagement.setUp("main-status");
-  statusManagement.setStandByText("Waiting");
-  
+  //TODO: demand file to be sent  
   const data = {
       title: 'RequestWorkout',
       currentWorkoutID: ""

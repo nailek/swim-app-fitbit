@@ -1,0 +1,35 @@
+<svg class="background-fill" id="view-workout-background">  
+  <animate attributeName="x" from="100%" to="0" begin="load" dur="0.25" easing="ease-in-out" />
+  <animate attributeName="x" to="0" begin="enable" dur="0.05"/>
+  /* view workout screen */
+  <svg id="view-screen">
+    <rect y="20" width="100%" height="100%" class="background-fill"/>
+    <use y="20" height="100%-25" id="view-exercise-virtual-list" class="tile-list" href="#tile-list">
+      <var id="virtual" value="1" />
+      <var id="reorder-enabled" value="0"/>
+      <var id="peek-enabled" value="0"/>
+      <var id="separator-height-bottom" value="2" />
+      
+      <use id="workout-data" href="#tile-list-pool">
+        <use id="workout-data[0]" href="#workout-data" />
+        <use id="workout-data[1]" href="#workout-data" />
+        <use id="workout-data[2]" href="#workout-data" />
+        <use id="workout-data[3]" href="#workout-data" />
+        <use id="workout-data[4]" href="#workout-data" />
+        <use id="workout-data[5]" href="#workout-data" />
+        <use id="workout-data[6]" href="#workout-data" />
+        <use id="workout-data[7]" href="#workout-data" />
+        <use id="workout-data[8]" href="#workout-data" />
+        <use id="workout-data[9]" href="#workout-data" />
+        <use id="workout-data[10]" href="#workout-data" />
+      </use>
+    </use>
+  </svg>
+  <section>
+    <rect width="100%" height="21"/>
+    <text x="50%" y="15" class="background-fill subtext time-text"/>
+    <text x="65%" y="15" class="background-fill subtext battery-text"/>
+  </section>
+  <use id="view-popup" href="#text-left-right" display="none"/>
+  /* view workout screen */
+</svg>

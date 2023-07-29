@@ -1,17 +1,16 @@
 import * as document from "document";
-import {toMain} from "./viewManager";
+import * as utils from "../common/utils";
 import * as exerciseStats from "./componentViewExerciseStats";
 
-let eventListenerDone;
-
-export function setView(workoutData) {
+export function setView(workoutData, goBack = false) {
   let done = document.getElementById("edit-done");
   
-  eventListenerDone = (evt) => {
-    done.removeEventListener("click", eventListenerDone);
-    toMain();
+  if(!goBack) {
+    done.addEventListener("click", utils.historyToRoot);
   }
-  done.addEventListener("click", eventListenerDone);
+  else {
+    done.addEventListener("click", () => document.history.back());
+  }
   exerciseStats.setViewExerciseStats("edit-exercise-stats", prepWorkoutData(workoutData));
 }
 
