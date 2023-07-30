@@ -1,14 +1,11 @@
 import * as document from "document";
 import * as fs from "./fileManagement";
-import * as utils from "../common/utils";
-import * as clockManager from "../common/clockManager";
 import * as viewManager from "./viewManager"
 import * as statusManagement from "./statusManagement";
 import { me } from "appbit";
 import * as componentTextLeftRight from "./componentTextLeftRight";
 
 const exitConfirmation = "main-confirmation-exit";
-export const updateBatteryHeader = (evt) => {utils.updateBatteryHeader()};
 
 export function setView() {
   //TODO: Move to own js

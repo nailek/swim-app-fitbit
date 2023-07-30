@@ -45,6 +45,24 @@ export function keepOnRough() {
   });
 }
 
+let isShowHelp = false;
+
+//Outdated? No.. multiple views are bullshit
+export function toggleShowHelp() {
+  let help = document.getElementById("plan-screen");
+  if (help.style.display == "none") {
+    help.style.display = "inherit";
+    //help.animate("enable");
+    isShowHelp = true;
+  }
+  else {
+    help.animate("disable");
+    help.style.display = "none";
+    //help.x = 0;
+    isShowHelp = false;
+  }
+}
+
 export function setEquipmentHideShow(equipData, equipID, finsID, paddlesID, pullBuoyID, kickboardID, snorkelID) {
   let hasEquipment = false;
   const workoutEquipment = getElement(equipID);

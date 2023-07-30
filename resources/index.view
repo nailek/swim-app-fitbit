@@ -1,5 +1,6 @@
 <svg class="background-fill" id="background">
   <animate attributeName="x" from="100%" to="0" begin="load" dur="0.25" easing="ease-in-out" />
+  <animate attributeName="x" to="0" begin="enable" dur="0.05"/>
   <svg display="none">
     <rect width="100%" height="99%" class="application-fill"/>
     <image fill="white" href="icon/fins.png"/>

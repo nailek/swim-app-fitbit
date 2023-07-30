@@ -9,8 +9,6 @@ import * as viewWorkoutClock from "./viewWorkoutClock";
 import * as viewPlannedWorkout from "./viewPlannedWorkout"
 import * as viewEditWorkout from "./viewEditWorkout"
 import * as viewViewWorkouts from "./viewChooseWorkout"
-import { me } from "appbit";
-import * as componentTextLeftRight from "./componentTextLeftRight";
 
 let main = document.getElementById("main-screen");
 let planWorkout = document.getElementById("plan-screen");
@@ -25,7 +23,6 @@ function allNone() {
   }
   main.style.display="none";
   planWorkout.style.display="none";
-  clockManager.stopClock(viewMain.updateBatteryHeader);
 }
 
 const backButtonBehaviourPrevent = (evt) => {
@@ -73,7 +70,18 @@ export function backButtonBehaviour(behaviour = "prevent") {
 
 export function swipeBehaviour(backgroundId, behaviour = "prevent") {
   if (behaviour == "back") {
+    console.log("BackSwipe");
     return;
+  }
+  if (behaviour == "help") {
+    document.addEventListener("beforeunload",  (evt) => {
+      console.log("PreventBackSwipe: - Show Help");
+      evt.preventDefault();
+      // reset the position of the second view
+      document.getElementById(backgroundId).animate("enable");
+      utils.toggleShowHelp();
+      // or, reset the X coordinate
+    });
   }
   document.addEventListener("beforeunload",  (evt) => {
     console.log("PreventBackSwipe");
@@ -86,6 +94,8 @@ export function swipeBehaviour(backgroundId, behaviour = "prevent") {
 
 export function setListeners() {
   utils.keepHeaderUpdated();
+  
+  swipeBehaviour("background", "help");
   viewMain.setView();
   
   backButtonBehaviour();
