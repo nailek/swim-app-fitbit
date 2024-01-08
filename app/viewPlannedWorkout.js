@@ -1,6 +1,6 @@
 import * as document from "document";
-import {toMain, toStartWorkout} from "./viewManager";
 import {getReadWorkoutFile} from "./fileManagement";
+import * as utils from "../common/utils";
 import * as exerciseStats from "./componentViewExerciseStats";
 
 let initiated = false;
@@ -9,7 +9,7 @@ export function setView() {
   let back = document.getElementById("plan-back");
   
   back.addEventListener("click", (evt) => {
-    toMain();
+    utils.viewBack()
   });
 }
 export function setTextRaw() {
@@ -37,13 +37,12 @@ export function setPlanView() {
       console.log(`There was an issue: ${workutData.msg}`)
       return;
     }
-    
+    /* TODO: Fix planned workout
     let start = document.getElementById("plan-start");
     start.addEventListener("click", (evt) => {
-      
     });
+    */
     exerciseStats.setViewExerciseStats("plan-exercise-stats", prepWorkoutData(workutData[0].rawWorkout));
-    
   }
   else {
     //planRaw.text = "No workout synced";

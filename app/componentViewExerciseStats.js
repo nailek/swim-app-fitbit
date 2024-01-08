@@ -47,7 +47,7 @@ export function setViewExerciseStats(displayID, data) {
   };
 
   // length must be set AFTER delegate
-  console.log(`elements: ${data.numElements}`);
+  //console.log(`elements: ${data.numElements}`);
   editDisplay.length = data.numElements;
 }
 

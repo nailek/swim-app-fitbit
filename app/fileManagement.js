@@ -27,10 +27,10 @@ export function sendWorkoutLogs() {
       messaging.peerSocket.send(data);
     }
     for(let fileName of fileNames) {
-      console.log(`Sending file: ${JSON.stringify(fileNames)}`)
+      //console.log(`Sending file: ${JSON.stringify(fileNames)}`)
       sendFile(`${fileNames}`);
     }
-    console.log(`Sent: ${fileNames.length} new workouts. Nothing else found`);
+    //console.log(`Sent: ${fileNames.length} new workouts. Nothing else found`);
     statusManagement.addStatus(`Sent: ${fileNames.length} workouts`);
   }
   else {
@@ -67,20 +67,17 @@ export function setListenerReceiveFile() {
   inbox.onnewfile = () => {
     clockManager.toGranularitySeconds();
     statusManagement.setUp("main-status");
-    console.log("New file!");
+    //console.log("New file!");
     let fileName;
     let found = false;
     do {
       // If there is a file, move it from staging into the application folder
       fileName = inbox.nextFile();
       if (fileName) {
-        console.log(`Received File: ${fileName}`);
+        //console.log(`Received File: ${fileName}`);
         statusManagement.addStatus(`Received: ${fileName}`);
         statusManagement.standByTextOff();
         found = true;
-        if(fileName = "workout.cbor") {
-          viewPlannedWorkout.setPlanView();
-        }
       }
     } while (fileName);
     if (!found) {
@@ -118,18 +115,18 @@ export function getReadAllWorkoutFiles() {
   //TODO: Use getListWorkoutFilenames
   let data = [];
   const listDir = fs.listDirSync("/private/data");
-  console.log("Listing files...")
+  //console.log("Listing files...")
   let dirIter;
   while((dirIter = listDir.next()) && !dirIter.done) {
     //console.log(`  F: ${dirIter.value}`);
-    console.log(`Pre`);
+    //console.log(`Pre`);
     let workout = readFile(dirIter.value, 'cbor')
-    console.log(`Post: ${JSON.stringify(workout)}`);
+    //console.log(`Post: ${JSON.stringify(workout)}`);
     if(workout.exercises != undefined && workout.exercises.length > 0) {
       data.push(workout);
     }
   }
-  console.log(`See ${data.length} workouts`);
+  //console.log(`See ${data.length} workouts`);
   return data;
 }
 
@@ -138,7 +135,7 @@ function readFile(fileName, type) {
     return undefined;
   }
   let data = fs.readFileSync(fileName, type);
-  console.log(`Read: ${fileName}`)
+  //console.log(`Read: ${fileName}`)
   //console.log(`-> ${JSON.stringify(data)}`)
   return data;
 }
@@ -156,7 +153,7 @@ export function saveNewWorkout(workoutData, isFinished = true) {
       index++;    
     }
     else {
-      console.log(`Write Log ${fileName}${index}.cbor`)
+      //console.log(`Write Log ${fileName}${index}.cbor`)
       fs.writeFileSync(`${fileName}${index}.cbor`,workoutData,'cbor');
       found = false;
     }
@@ -167,7 +164,7 @@ export function cleanUpAllFiles() {
   const listDir = fs.listDirSync("/private/data");
   let dirIter;
   while((dirIter = listDir.next()) && !dirIter.done) {
-    console.log(`Deleting: ${dirIter.value}`);
+    //console.log(`Deleting: ${dirIter.value}`);
     fs.unlinkSync(dirIter.value);
   }
 }
@@ -177,7 +174,7 @@ export function cleanUpWorkoutFiles() {
   let dirIter;
   while((dirIter = listDir.next()) && !dirIter.done) {
     if (dirIter.value.slice(0, 11) == "workout-log") {
-      console.log(`Deleting: ${dirIter.value}`);
+      //console.log(`Deleting: ${dirIter.value}`);
       fs.unlinkSync(dirIter.value);
     }
   }
@@ -187,7 +184,7 @@ export function getListWorkoutFilenames() {
   let fileNames = [];
   try {
     const listDir = fs.listDirSync("/private/data");
-    console.log("Listing files...");
+    //console.log("Listing files...");
     let dirIter;
     while((dirIter = listDir.next()) && !dirIter.done) {
       if(dirIter.value.indexOf(workoutLogFilename) != -1 
@@ -195,7 +192,7 @@ export function getListWorkoutFilenames() {
          fileNames.push(dirIter.value);
       }
     }
-    console.log(`Getting ${fileNames.length} workouts`);
+    //console.log(`Getting ${fileNames.length} workouts`);
   }
   catch (error) {
     console.error(`Error: ${JSON.stringify(error)}`)

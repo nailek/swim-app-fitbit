@@ -25,7 +25,7 @@ export function getAvg(time, lapDistance) {
 
 export function formatDate(date) {
   let stringData = "dd/MM/yyyy hh:mm:ss";
-  console.log(`formatDate ${date}`)
+  //console.log(`formatDate ${date}`)
   stringData = stringData
                 .replace("dd", date.getDate())
                 .replace('MM', date.getMonth()+1)
@@ -45,22 +45,10 @@ export function keepOnRough() {
   });
 }
 
-let isShowHelp = false;
+export function viewBack() {
+  document.history.back()
 
-//Outdated? No.. multiple views are bullshit
-export function toggleShowHelp() {
-  let help = document.getElementById("plan-screen");
-  if (help.style.display == "none") {
-    help.style.display = "inherit";
-    //help.animate("enable");
-    isShowHelp = true;
-  }
-  else {
-    help.animate("disable");
-    help.style.display = "none";
-    //help.x = 0;
-    isShowHelp = false;
-  }
+  console.log(`View go Back ${document.history.length}`);    
 }
 
 export function setEquipmentHideShow(equipData, equipID, finsID, paddlesID, pullBuoyID, kickboardID, snorkelID) {

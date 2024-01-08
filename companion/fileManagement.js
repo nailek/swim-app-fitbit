@@ -6,10 +6,10 @@ import * as messaging from "messaging";
 let userID;
     
 async function receiveAllFiles() {
-  console.log(`Receiving files...`);
+  //console.log(`Receiving files...`);
   let file;
   while (file = await inbox.pop()) {
-    console.log(`Save to API: ${file}`);
+    //console.log(`Save to API: ${file}`);
     try {
       const payload = await file.cbor();
       setWorkoutLogToAPI(userID, payload)
@@ -22,7 +22,7 @@ async function receiveAllFiles() {
 
 export function receiveMessages() {
   messaging.peerSocket.addEventListener("message", (evt) => {
-    console.log(`Message received: ${JSON.stringify(evt.data)}`);
+    //console.log(`Message received: ${JSON.stringify(evt.data)}`);
     if (evt.data.title == "RequestWorkout") { //TODO: Use global variables....
       getWorkoutFromAPI(userID).then(workoutJson => {
       var sendId = sendWorkoutToDevice(workoutJson)
@@ -57,7 +57,7 @@ export function sendWorkoutToDevice(workoutJson) {
 }
 
 export function sendJsonToDevice(filename, json) {
-  console.log(`Sending file ${filename}... `);
+  //console.log(`Sending file ${filename}... `);
   if (json == undefined) {
     throw new Error(`Workout data not found`);
   }
@@ -69,7 +69,7 @@ export function sendJsonToDevice(filename, json) {
 }
 
 export function sendFileTest() {
-  console.log("Sending test file...");
+  //console.log("Sending test file...");
   let data = new Uint8Array(26);
   for (let counter = 0; counter < data.length; counter++) {
     data[counter] = "a".charCodeAt(0) + counter;

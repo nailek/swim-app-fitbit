@@ -32,7 +32,7 @@ function prepWorkoutData(workoutDataRaw) {
     }
   }
   data.numElements = workoutData.length;
-  console.log(`   Prepped: ${data.numElements}`)
-  console.log(JSON.stringify(data))
+  //console.log(`   Prepped: ${data.numElements}`)
+  //console.log(JSON.stringify(data))
   return data;
 }

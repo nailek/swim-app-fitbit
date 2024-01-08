@@ -10,7 +10,7 @@ let standByText = "";
 let standByTimer = 15;
 
 const animationStatus = (evt) => {
-  console.log(`Status ${JSON.stringify(statusBuffer)} - ${runningTimer} - Standby: ${standByText}`);
+  //console.log(`Status ${JSON.stringify(statusBuffer)} - ${runningTimer} - Standby: ${standByText}`);
   if (statusElement === undefined) {
     stopAnimation();
     return;
@@ -18,7 +18,7 @@ const animationStatus = (evt) => {
   if (statusBuffer.length === 0) {
     if (isStandByMode()) {
       if (standByTimer > 0) {
-        console.log(`runningTimer ${standByTimer}`)
+        //console.log(`runningTimer ${standByTimer}`)
         standByTimer--;
         let text = standByText;
         for (let i = 0; i < standByTimer%3; i++) {
@@ -55,7 +55,7 @@ export function setUp(elementID) {
 
 export function stopAnimation(text = " ") {
   runningTimer = timeOfStatus;
-  console.log("Stop Status Animation");
+  //console.log("Stop Status Animation");
   clockManager.stopClock(animationStatus);
   if(statusElement != undefined) {
     statusElement.text = text;
@@ -63,7 +63,7 @@ export function stopAnimation(text = " ") {
 }
 
 export function setStandByText(text = "") {
-  console.log(`setStandByText ${text}`)
+  //console.log(`setStandByText ${text}`)
   standByText = text;
   standByTimer = 15;
 }

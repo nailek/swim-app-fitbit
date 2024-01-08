@@ -26,8 +26,8 @@ document.addEventListener("unload", (evt) => {
 
 //Works but kills all listeners...
 let thisIsStupid = (evt) => {
-  console.log("Test Swipe");
-  console.log(document.history.length);
+  //console.log("Test Swipe");
+  //console.log("Stupid: "+document.history.length);
   // prevent the actual swipe unload event
   evt.preventDefault();
   if (viewId == 0) {

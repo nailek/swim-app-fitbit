@@ -54,7 +54,7 @@ function setExitButtons() {
   });
   
   const functionYes = function() {
-    console.log("Get the F out");
+    //console.log("Get the F out");
     me.exit();
   }
   

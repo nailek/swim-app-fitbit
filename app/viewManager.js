@@ -1,3 +1,5 @@
+// noinspection JSVoidFunctionReturnValueUsed
+
 import * as document from "document";
 import * as fileManager from "./fileManagement";
 import * as utils from "../common/utils";
@@ -11,7 +13,6 @@ import * as viewEditWorkout from "./viewEditWorkout"
 import * as viewViewWorkouts from "./viewChooseWorkout"
 
 let main = document.getElementById("main-screen");
-let planWorkout = document.getElementById("plan-screen");
 
 let isAppInitiated = false;
 //Force set up?
@@ -22,7 +23,6 @@ function allNone() {
     isAppInitiated = true;
   }
   main.style.display="none";
-  planWorkout.style.display="none";
 }
 
 const backButtonBehaviourPrevent = (evt) => {
@@ -36,7 +36,7 @@ const backButtonBehaviourBack = (evt) => {
   if (evt.key === "back") {
     evt.preventDefault();
     try {
-      document.history.back();
+      utils.viewBack();
     }
     catch (error) {
       console.error(` Error: ${error}. Are you already in home page?`);
@@ -53,57 +53,73 @@ const backButtonBehaviourRoot = (evt) => {
 }
 
 export function backButtonBehaviour(behaviour = "prevent") {
-  console.log("PreventBack");
-  document.removeEventListener("keypress", backButtonBehaviourRoot);
-  document.removeEventListener("keypress", backButtonBehaviourPrevent);
-  document.removeEventListener("keypress", backButtonBehaviourBack);
-  if(behaviour == "back") {
-    document.addEventListener("keypress", backButtonBehaviourBack);
+  //document.removeEventListener("keypress", backButtonBehaviourRoot);
+  //document.removeEventListener("keypress", backButtonBehaviourPrevent);
+  //document.removeEventListener("keypress", backButtonBehaviourBack);
+  if(document.history.length > 2) {
+    if(behaviour == "back") {
+      document.addEventListener("keypress", backButtonBehaviourBack);
+      return;
+    }
+    if(behaviour == "root") {
+      document.addEventListener("keypress", backButtonBehaviourRoot);
+      return;
+    }
   }
-  else if(behaviour == "root") {
-    document.addEventListener("keypress", backButtonBehaviourRoot);
-  }
-  else {
-    document.addEventListener("keypress", backButtonBehaviourPrevent);
-  }
+  document.addEventListener("keypress", backButtonBehaviourPrevent);
 }
 
 export function swipeBehaviour(backgroundId, behaviour = "prevent") {
-  if (behaviour == "back") {
-    console.log("BackSwipe");
-    return;
+  console.log(`BackSwipe: ${backgroundId}`)
+  let background = document.getElementById(backgroundId);
+  if(document.history.length > 2) {
+    if (behaviour == "back") {
+      console.log("   - Allow");
+      return;
+    }
+    if (behaviour == "prevent") {
+      document.addEventListener("beforeunload",  (evt) => {
+        console.log("   - Prevent");
+        evt.preventDefault();
+  
+        // reset the position of the second view
+        background.animate("enable");
+        // or, reset the X coordinate
+      });
+      return;
+    }
   }
-  if (behaviour == "help") {
-    document.addEventListener("beforeunload",  (evt) => {
-      console.log("PreventBackSwipe: - Show Help");
-      evt.preventDefault();
-      // reset the position of the second view
-      document.getElementById(backgroundId).animate("enable");
-      utils.toggleShowHelp();
-      // or, reset the X coordinate
-    });
-  }
+  let backgroundMain = document.getElementById("background");
   document.addEventListener("beforeunload",  (evt) => {
-    console.log("PreventBackSwipe");
+    console.log("   - Show Help");
     evt.preventDefault();
     // reset the position of the second view
-    document.getElementById(backgroundId).animate("enable");
+    background.animate("enable");
+    toggleShowHelp();
+    if (backgroundMain !== undefined && backgroundMain !== null) {
+      //backgroundMain.x = 0;
+    }
     // or, reset the X coordinate
   });
 }
 
+//Outdated? No.. multiple views are bullshit
+export function toggleShowHelp() {
+  let help = document.getElementById("plan-screen");
+  if (help === null || help === undefined) {
+    toPlannedWorkout()
+  }
+}
+
 export function setListeners() {
   utils.keepHeaderUpdated();
-  
+
+  backButtonBehaviour();
   swipeBehaviour("background", "help");
   viewMain.setView();
   
-  backButtonBehaviour();
- 
-  viewPlannedWorkout.setView();
   fileManager.setListenerReceiveFile();
   fileManager.setListenerReceiveMessages();
-  viewPlannedWorkout.setPlanView();
 }
 
 export function toMain() {
@@ -142,16 +158,21 @@ export function toFreeWorkoutNextExercise(workoutData) {
 }
 
 export function toPlannedWorkout() {
-  allNone();
-  planWorkout.style.display="inherit";
-  clockManager.toGranularityOff();
+  document.location.assign("plan.view").then(() => {
+    console.log("Planned: "+document.history.length)
+    backButtonBehaviour("back");
+    //swipeBehaviour("plan-background");
+    clockManager.toGranularitySeconds();
+
+    viewPlannedWorkout.setView();
+    viewPlannedWorkout.setPlanView();
+  });
 }
 
 export function toStartWorkout(workoutData) {
   document.location.assign("workout.view").then(() => {
     console.log("Start: "+document.history.length)
     backButtonBehaviour();
-    console.log(document.history.length)
     swipeBehaviour("workout-background");
     clockManager.toGranularitySeconds();
     viewWorkoutClock.startTimer(workoutData);

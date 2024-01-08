@@ -17,8 +17,9 @@ export function setView() {
   let startWorkout = document.getElementById("free-start-workout");
   
   back.addEventListener("click", (evt) => {
-    console.log(document.history.length)
+    //console.log("Free before back "+document.history.length)
     document.history.back();
+    //console.log("Free after back "+document.history.length)
   });
   
   startWorkout.addEventListener("click", (evt) => {
@@ -51,7 +52,7 @@ function goToStartWorkout() {
     distance: lapSizes[lapSizeIndex]*lapCount
   }
   workoutData.exercises.push({summary});
-  console.log(`pushed Exercise`, JSON.stringify(workoutData.exercises.length));
+  //console.log(`pushed Exercise`, JSON.stringify(workoutData.exercises.length));
   dataManagement.printWorkout(workoutData.dirId);
   toStartWorkout(workoutData);
 }

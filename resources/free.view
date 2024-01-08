@@ -1,5 +1,6 @@
 <svg class="background-fill" id="free-background">
   <animate attributeName="x" from="100%" to="0" begin="load" dur="0.1" easing="ease-in-out" />
+  <animate attributeName="x" to="0" begin="enable" dur="0.05"/>
   /* free screen */
   <svg id="free-screen">
     <use href="#scrollview" id="free-scrollview">

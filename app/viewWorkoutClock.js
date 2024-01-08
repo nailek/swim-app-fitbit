@@ -70,9 +70,7 @@ function setElements() {
 //Call only once
 function setView() {
   setElements();
-  console.log("Start")
   workoutEndNextLap.addEventListener("click", () => {
-    console.log("End")
     prepareNextLap(refLaps[refLaps.length-1].distance);
     statusStartTimer();
   });
@@ -82,7 +80,6 @@ function setView() {
     () => {statusStartTimer();})
   componentTextLeftRight.setLeftClass("workout-end-confirmation-exit","navigation-fill");
   componentTextLeftRight.setRightClass("workout-end-confirmation-exit","application-fill");
-  console.log("   End Set view - Workout Clock")
 }
 
 // --- Init Screen --- //

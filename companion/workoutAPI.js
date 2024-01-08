@@ -15,7 +15,7 @@ export function WorkoutAPI(apiKey) {
 WorkoutAPI.prototype.getWorkout = function(userID) {
   return new Promise(function(resolve, reject) {
     var url = baseUrl+endpointWorkout+"?q="+myUserQuery(userID);
-    console.log("Fetching: " + url);
+    //console.log("Fetching: " + url);
     fetch(url, {
         headers: { 
           'content-type': 'application/json',
@@ -31,7 +31,7 @@ WorkoutAPI.prototype.getWorkout = function(userID) {
         return response.json();
       })
       .then((json) => {
-        console.log("Succes:", JSON.stringify(json));
+        //console.log("Succes:", JSON.stringify(json));
         resolve(json);
       }).catch((error) => {
         console.error("Failed: ", JSON.stringify(error));
@@ -49,7 +49,7 @@ WorkoutAPI.prototype.setWorkoutLog = function(userID, workoutData) {
   return new Promise(function(resolve, reject) {
     if(workoutData == undefined | workoutData.exercises[0] == undefined) {
       resolve("Error: Data incorrect, could not be synced."); //TODO: throw error
-      console.log("Error: Data incorrect, could not be synced.");
+      //console.log("Error: Data incorrect, could not be synced.");
     }
     var url = baseUrl+endpointWorkoutLog;
     let body = {
@@ -57,7 +57,7 @@ WorkoutAPI.prototype.setWorkoutLog = function(userID, workoutData) {
       user: userID,
       rawLog: workoutData
     }
-    console.log("Sending POST: " + url + ` ${JSON.stringify(body)}`);
+    //console.log("Sending POST: " + url + ` ${JSON.stringify(body)}`);
     fetch(url, {
         headers: { 
           'content-type': 'application/json',

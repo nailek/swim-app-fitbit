@@ -19,10 +19,10 @@ export function getLastExerciseData() {
 
 export function saveWorkout(workoutData, isFinished = true) {
   if (isValidWorkout(workoutData)) {
-    console.log(`Save... ${JSON.stringify(workoutData)}`);
+    //console.log(`Save... ${JSON.stringify(workoutData)}`);
     fileManagement.saveNewWorkout(workoutData, isFinished);
   }
-  console.log(`Delete, not valid ${workoutData.dirId}`);
+  //console.log(`Delete, not valid ${workoutData.dirId}`);
   deleteWorkoutData(workoutData.dirId);
 }
 
