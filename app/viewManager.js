@@ -11,6 +11,7 @@ import * as viewWorkoutClock from "./viewWorkoutClock";
 import * as viewPlannedWorkout from "./viewPlannedWorkout"
 import * as viewEditWorkout from "./viewEditWorkout"
 import * as viewViewWorkouts from "./viewChooseWorkout"
+import * as dataManagement from "./dataManagement";
 
 let main = document.getElementById("main-screen");
 
@@ -147,6 +148,7 @@ export function toFreeWorkout() {
 }
 
 export function toFreeWorkoutNextExercise(workoutData) {
+  dataManagement.saveUnfinishedWorkout(workoutData);
   document.location.assign("free.view").then(() => {
     console.log("Free Next: "+document.history.length)
     backButtonBehaviour();

@@ -4,6 +4,7 @@ import * as componentPlusMinSelect from "./componentPlusMinSelect";
 import * as componentStrokeSelect from "./componentStrokeSelect";
 import * as componentEquipmentSelect from "./componentEquipmentSelect";
 import * as dataManagement from "./dataManagement";
+import {getUnfinishedWorkoutFile} from "./fileManagement";
 
 let lapSizes = [10,15,25,33,50,"Varied","Open water"]
 let lapSizeIndex = 2;
@@ -12,9 +13,17 @@ let lapCount = 4;
 let workoutData;
 
 //Call only once
-export function setView() {  
+export function setView() {
   let back = document.getElementById("free-back");
   let startWorkout = document.getElementById("free-start-workout");
+
+  let unfinishedWorkoutData = getUnfinishedWorkoutFile();
+  if (unfinishedWorkoutData !== undefined) {
+    startWorkout.text = "Resume";
+  }
+  else {
+    startWorkout.text = "Start";
+  }
   
   back.addEventListener("click", (evt) => {
     //console.log("Free before back "+document.history.length)
@@ -51,6 +60,13 @@ function goToStartWorkout() {
     stroke: componentStrokeSelect.getSelectedStroke("free-stroke-select"),
     distance: lapSizes[lapSizeIndex]*lapCount
   }
+
+  let unfinishedWorkoutData = getUnfinishedWorkoutFile();
+  if (unfinishedWorkoutData !== undefined) {
+    console.log(`Unfinished Workout`);
+    workoutData = unfinishedWorkoutData;
+  }
+
   workoutData.exercises.push({summary});
   //console.log(`pushed Exercise`, JSON.stringify(workoutData.exercises.length));
   dataManagement.printWorkout(workoutData.dirId);

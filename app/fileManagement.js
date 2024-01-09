@@ -1,15 +1,11 @@
-import * as document from "document";
-import { encode, decodeFirst } from "cbor";
 import { inbox, outbox } from "file-transfer";
 import * as fs from "fs";
 import * as statusManagement from "./statusManagement";
 import * as messaging from "messaging";
 import * as clockManager from "../common/clockManager";
-import * as viewPlannedWorkout from "./viewPlannedWorkout"
 
-let searchFile;
 let workoutLogFilename = "workout-log-";
-let workoutUnfinishedLogFilename = "workout-log-unfinished-";
+let workoutUnfinishedLogFilename = "workout-log-unfinished.cbor";
 
 export function sendWorkoutLogs() {
   statusManagement.setUp("main-status");
@@ -111,6 +107,11 @@ export function getReadWorkoutFile() {
   return data;
 }
 
+export function getUnfinishedWorkoutFile() {
+  let data = readFile(workoutUnfinishedLogFilename, "cbor")
+  return data;
+}
+
 export function getReadAllWorkoutFiles() {
   //TODO: Use getListWorkoutFilenames
   let data = [];
@@ -144,7 +145,14 @@ function readFile(fileName, type) {
 export function saveNewWorkout(workoutData, isFinished = true) {
   let fileName = workoutLogFilename;
   if (!isFinished) {
-    fileName = workoutUnfinishedLogFilename;
+    fs.writeFileSync(workoutUnfinishedLogFilename,workoutData,'cbor');
+    return;
+  }
+  else {
+    if (fs.existsSync(workoutUnfinishedLogFilename)) {
+      fs.unlinkSync(workoutUnfinishedLogFilename);
+      console.log(`Deleted: Unfinished workout file`);
+    }
   }
   let index = 0;
   let found = true;

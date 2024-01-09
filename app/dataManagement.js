@@ -17,13 +17,25 @@ export function getLastExerciseData() {
   return workouts[workouts.length-1];
 }
 
-export function saveWorkout(workoutData, isFinished = true) {
+export function saveWorkout(workoutData) {
   if (isValidWorkout(workoutData)) {
     //console.log(`Save... ${JSON.stringify(workoutData)}`);
-    fileManagement.saveNewWorkout(workoutData, isFinished);
+    fileManagement.saveNewWorkout(workoutData, true);
   }
   //console.log(`Delete, not valid ${workoutData.dirId}`);
+    //TODO: What is this?
   deleteWorkoutData(workoutData.dirId);
+}
+
+export function saveUnfinishedWorkout(workoutData) {
+    console.log("Save Unfinished Workout:");
+    if (isValidWorkout(workoutData)) {
+        console.log(`   Save... ${JSON.stringify(workoutData)}`);
+        fileManagement.saveNewWorkout(workoutData, false);
+    }
+    else {
+        console.log(`  Not valid workload: ${workoutData.dirId}`);
+    }
 }
 
 export function saveUnfinishedExercises() {
